@@ -10,6 +10,6 @@ public class TypingThings {
     }
 
     public static void typing_Password_Input() {
-        driver.findElement(By.id("passInput")).sendKeys("TEST");
+        driver.findElement(By.id("passInput")).sendKeys("TEST");////TEST
     }
 }
