@@ -1,9 +1,7 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.devtools.idealized.log.Log;
 
 public class ZMainTests {
 
@@ -18,8 +16,19 @@ public class ZMainTests {
         driver.get("https://qa-carinventory-qa1.store.pullapart.com");
     }
 
-    @Test
-    public void loginScreen_Good(){
-        LoginScreen.loginScreen_Good(driver);
+    @Nested
+    @DisplayName("Main Login Screen Tests")
+    class MainLoginScreenTest {
+        @Test
+        @DisplayName("Entering a valid login")
+        public void mainLoginScreen_Attempt_Valid_Test() throws InterruptedException {
+            Assertions.assertEquals(LoginScreen.mainLoginScreen_Attempt_Valid(driver), "https://qa-carinventory-qa1.store.pullapart.com/home", "Was not able to login");
+        }
+
+        @Test
+        @DisplayName("Entering an invalided login")
+        public void mainLoginScreen_Attempt_Invalid_Test() throws InterruptedException {
+            Assertions.assertEquals(LoginScreen.mainLoginScreen_Attempt_Invalid(driver), "User name or password is incorrect. Please try again.", "Error Message was not displayed");
+        }
     }
 }
